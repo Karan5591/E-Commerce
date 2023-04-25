@@ -4,7 +4,7 @@ dotenv.config()
 const mongoClient=mongodb.MongoClient;
 const mongoConnect=(callback)=>{
     mongoClient.connect(process.env.connectString)
-.then((response)=>{
+.then((client)=>{
     console.log("Connected");
     _db = client.db();
     callback();
@@ -23,5 +23,5 @@ const getDb= ()=>{
 }
 throw "No DB found"
 }
-exports.mongoConnet=mongoConnect;
+exports.mongoConnect=mongoConnect;
 exports.getDb=getDb;
