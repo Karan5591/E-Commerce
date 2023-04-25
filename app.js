@@ -4,6 +4,7 @@ const bodyparser= require('body-parser')
 const path= require('path')
 const routes= require("./routes/admin")
 const routes1= require("./routes/shop")
+const User= require('./models/user')
 const app=express();
 
 app.use(bodyparser.urlencoded({extended: false}))
