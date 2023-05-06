@@ -13,7 +13,7 @@ exports.getAddProduct = (req, res) => {
     const imageUrl = req.body.imageUrl;
     const price = req.body.price;
     const description = req.body.description;
-    const product = new Product({title:title, price:price, description:description, imageUrl:imageUrl});
+    const product = new Product({title:title, price:price, description:description, imageUrl:imageUrl, userId: req.user});
     product
       .save()
       .then(result => {
@@ -67,6 +67,8 @@ exports.getAddProduct = (req, res) => {
   
   exports.getProducts = (req, res) => {
     Product.find()
+    // .select('title price -_id')
+    // .populate('userId')
       .then(products => {
         res.send(products)
         })
