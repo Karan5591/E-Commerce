@@ -82,9 +82,12 @@ exports.postCartDeleteProduct = (req, res) => {
 
 exports.getCart = (req, res) => {
   req.user
-    .getCart()
-    .then(products => {
-      res.send(products)
+    .populate('cart.items.productId')
+    .execPopulate()
+    .then(user => {
+      const products=user.cart.items;
+      
+      res.send(products);
     })
     .catch(err => console.log(err));
 };
