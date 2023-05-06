@@ -59,6 +59,7 @@ exports.getAddProduct = (req, res) => {
     })
 
      .then(result => {
+      res.send("Product Updated Successfully")
         console.log('UPDATED PRODUCT!');
         
       })
@@ -80,6 +81,7 @@ exports.getAddProduct = (req, res) => {
     const prodId = req.body.productId;
     Product.findByIdAndRemove(prodId)
       .then(() => {
+        res.send("Product Deleted Successfully")
         console.log('DESTROYED PRODUCT');
        
       })

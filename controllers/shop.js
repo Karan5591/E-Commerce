@@ -66,17 +66,11 @@ exports.postCart = (req, res) => {
 exports.postCartDeleteProduct = (req, res) => {
   const prodId = req.body.productId;
   req.user
-    .getCart()
-    .then(cart => {
-      return cart.getProducts({ where: { id: prodId } });
-    })
-    .then(products => {
-      const product = products[0];
-      return product.cartItem.destroy();
-    })
-    .then(result => {
-      res.send(result);
-    })
+    .removeFromCart(prodId)
+    .then(result=>
+      {
+        res.send("Item Deleted")
+      })
     .catch(err => console.log(err));
 };
 
